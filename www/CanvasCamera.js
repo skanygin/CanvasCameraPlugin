@@ -3,6 +3,7 @@
 //  PhoneGap iOS Cordova Plugin to capture Camera streaming into a HTML5 Canvas or an IMG tag.
 //
 //  Created by Diego Araos <d@wehack.it> on 12/29/12.
+//   Modificado por Roger Zavala - Koiosoft
 //
 //  MIT License
 
@@ -32,28 +33,22 @@ cordova.define("cordova/plugin/CanvasCamera", function(require, exports, module)
         this._camImage = new Image();
 
         this._camImage.onload = function() {
-            _this._context.clearRect(0, 0, _this._width, _this._height);
-            if (window.orientation == 90
-               || window.orientation == -90)
-            {
-                _this._context.save();
-                // rotate 90
-                _this._context.translate(_this._width/2, _this._height/2);
-                _this._context.rotate((90 - window.orientation) *Math.PI/180);
-                _this._context.drawImage(_this._camImage, 0, 0, 352, 288, -_this._width/2, -_this._height/2, _this._width, _this._height);
-                //
-                _this._context.restore();
-            }
-            else
-            {
-                _this._context.save();
-                // rotate 90
-                _this._context.translate(_this._width/2, _this._height/2);
-                _this._context.rotate((90 - window.orientation)*Math.PI/180);
-                _this._context.drawImage(_this._camImage, 0, 0, 352, 288, -_this._height/2, -_this._width/2, _this._height, _this._width);
-                //
-                _this._context.restore();
-            }
+
+            _this._context.clearRect(0, 0, _this._obj.width, _this._obj.height);
+
+            _this._context.save();
+            _this._context.translate( 320, 0);
+            _this._context.rotate((90 - window.orientation)*Math.PI/180);
+            _this._context.drawImage(_this._camImage, 0, 0, 288, 288, 0, 0, 320, 320 );
+            _this._context.restore();
+
+            //  solamente para pruebas
+            lastCanvas        = document.createElement('canvas');
+            lastCanvas.width  = _this._obj.width;
+            lastCanvas.height = _this._obj.height;
+            var lastCanvasCtx = lastCanvas.getContext('2d');
+            lastCanvasCtx.drawImage( _this._obj, 0, 0, _this._obj.width, _this._obj.height,  0, 0, _this._obj.width, _this._obj.height);
+
         };
 
         // register orientation change event
@@ -95,15 +90,6 @@ cordova.define("cordova/plugin/CanvasCamera", function(require, exports, module)
         var windowWidth = window.innerWidth;
         var windowHeight = window.innerHeight;
         var pixelRatio = window.devicePixelRatio || 1; /// get pixel ratio of device
-
-
-        this._obj.width = windowWidth;// * pixelRatio;   /// resolution of canvas
-        this._obj.height = windowHeight;// * pixelRatio;
-
-
-        this._obj.style.width = windowWidth + 'px';   /// CSS size of canvas
-        this._obj.style.height = windowHeight + 'px';
-
 
         this._x = 0;
         this._y = 0;
