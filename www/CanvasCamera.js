@@ -3,7 +3,7 @@
 //  PhoneGap iOS Cordova Plugin to capture Camera streaming into a HTML5 Canvas or an IMG tag.
 //
 //  Created by Diego Araos <d@wehack.it> on 12/29/12.
-//   Modificado por Roger Zavala - Koiosoft
+//   Modificado por Roger Zavala - Koiosoft/Simetrica
 //
 //  MIT License
 

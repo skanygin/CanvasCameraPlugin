@@ -1,4 +1,4 @@
-package com.keith.canvascameraplugin;
+package com.simetrica.canvascameraplugin;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
