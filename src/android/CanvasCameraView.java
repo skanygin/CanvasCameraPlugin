@@ -1,5 +1,6 @@
 package com.simetrica.canvascameraplugin;
 
+import android.R;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -84,7 +85,7 @@ public class CanvasCameraView extends Activity implements SurfaceHolder.Callback
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(layout.canvascamera);
+        setContentView(R.layout.canvascamera);
 
         _quality = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getInt(CanvasCamera.QUALITY , 85);
         _destType = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getInt(CanvasCamera.DESTTYPE , DestinationTypeFileURI);
@@ -131,13 +132,13 @@ public class CanvasCameraView extends Activity implements SurfaceHolder.Callback
     @SuppressWarnings("deprecation")
 	private void getControlVariables()
     {
-        m_imgFlash = (ImageView) findViewById(id.imgFlash);
+        m_imgFlash = (ImageView) findViewById(R.id.imgFlash);
 
-        m_imgRevert = (ImageView) findViewById(id.imgRevert);
-        m_imgCapture = (ImageView) findViewById(id.imgCapture);
-        m_imgClose = (ImageView) findViewById(id.imgClose);
+        m_imgRevert = (ImageView) findViewById(R.id.imgRevert);
+        m_imgCapture = (ImageView) findViewById(R.id.imgCapture);
+        m_imgClose = (ImageView) findViewById(R.id.imgClose);
 
-        m_surfaceview = (SurfaceView) findViewById(id.surfaceView);
+        m_surfaceview = (SurfaceView) findViewById(R.id.surfaceView);
         m_surfaceHolder = m_surfaceview.getHolder();
         m_surfaceHolder.addCallback(this);
         m_surfaceHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
@@ -148,14 +149,14 @@ public class CanvasCameraView extends Activity implements SurfaceHolder.Callback
     private void initializeUI()
     {
         if (bFlash)
-            m_imgFlash.setImageResource(drawable.video_sprites_focus_inactive);
+            m_imgFlash.setImageResource(R.drawable.video_sprites_focus_inactive);
         else
-            m_imgFlash.setImageResource(drawable.video_sprites_focus);
+            m_imgFlash.setImageResource(R.drawable.video_sprites_focus);
 
         if (bRevert)
-            m_imgRevert.setImageResource(drawable.video_sprites_revert);
+            m_imgRevert.setImageResource(R.drawable.video_sprites_revert);
         else
-            m_imgRevert.setImageResource(drawable.video_sprites_revert_inactive);
+            m_imgRevert.setImageResource(R.drawable.video_sprites_revert_inactive);
 
         m_imgFlash.setOnClickListener(flashClickListener);
 
@@ -178,14 +179,14 @@ public class CanvasCameraView extends Activity implements SurfaceHolder.Callback
             if (bFlash)
             {
                 p.setFlashMode(Parameters.FLASH_MODE_OFF);
-                m_imgFlash.setImageResource(drawable.video_sprites_focus);
+                m_imgFlash.setImageResource(R.drawable.video_sprites_focus);
 
                 editor.putBoolean(CanvasCamera.FLASH, false);
             }
             else
             {
                 p.setFlashMode(Parameters.FLASH_MODE_TORCH);
-                m_imgFlash.setImageResource(drawable.video_sprites_focus_inactive);
+                m_imgFlash.setImageResource(R.drawable.video_sprites_focus_inactive);
 
                 editor.putBoolean(CanvasCamera.FLASH, true);
             }
@@ -215,10 +216,10 @@ public class CanvasCameraView extends Activity implements SurfaceHolder.Callback
             {
                 m_camera = Camera.open(Camera.CameraInfo.CAMERA_FACING_FRONT);
 
-                m_imgRevert.setImageResource(drawable.video_sprites_revert_inactive);
+                m_imgRevert.setImageResource(R.drawable.video_sprites_revert_inactive);
                 editor.putBoolean(CanvasCamera.REVERT, false);
 
-                m_imgFlash.setImageResource(drawable.video_sprites_focus);
+                m_imgFlash.setImageResource(R.drawable.video_sprites_focus);
                 bFlash = false;
                 editor.putBoolean(CanvasCamera.FLASH, false);
             }
@@ -226,7 +227,7 @@ public class CanvasCameraView extends Activity implements SurfaceHolder.Callback
             {
                 m_camera = Camera.open(Camera.CameraInfo.CAMERA_FACING_BACK);
 
-                m_imgRevert.setImageResource(drawable.video_sprites_revert);
+                m_imgRevert.setImageResource(R.drawable.video_sprites_revert);
 
                 editor.putBoolean(CanvasCamera.REVERT, true);
             }
@@ -426,12 +427,12 @@ public class CanvasCameraView extends Activity implements SurfaceHolder.Callback
             if (bRevert)
             {
                 m_camera = Camera.open(Camera.CameraInfo.CAMERA_FACING_BACK);
-                m_imgRevert.setImageResource(drawable.video_sprites_revert);
+                m_imgRevert.setImageResource(R.drawable.video_sprites_revert);
             }
             else
             {
                 m_camera = Camera.open(Camera.CameraInfo.CAMERA_FACING_FRONT);
-                m_imgRevert.setImageResource(drawable.video_sprites_revert_inactive);
+                m_imgRevert.setImageResource(R.drawable.video_sprites_revert_inactive);
             }
 
             try
