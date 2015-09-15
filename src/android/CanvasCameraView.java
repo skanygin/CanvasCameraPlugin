@@ -1,6 +1,6 @@
 package com.simetrica.canvascameraplugin;
 
-import android.R;
+import com.simetrica.canvascameraplugin.R;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ProgressDialog;
